@@ -1,0 +1,504 @@
+/* --- Global Resets and Base Styles --- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    /* Colors */
+    --primary-color: #FFFFFF; /* White */
+    --secondary-color: #000000; /* Black */
+    --background-dark: #111111; /* Very dark grey */
+    --background-light: #f9f9f9; /* Very light grey */
+    --text-dark: #222222; /* Dark grey text for light background */
+    --text-light: #eeeeee; /* Light grey text for dark background */
+    --accent-grey: #555555; /* Medium grey for borders/accents */
+
+    /* Fonts */
+    --font-family: 'Poppins', sans-serif;
+
+    /* Transitions */
+    --transition-speed: 0.3s ease;
+}
+
+html {
+    scroll-behavior: smooth; /* Enable smooth scrolling */
+    scroll-padding-top: 80px; /* Adjust based on header height */
+}
+
+body {
+    font-family: var(--font-family);
+    line-height: 1.7;
+    color: var(--text-dark); /* Default text color on light background */
+    background-color: var(--background-light); /* Default background */
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 30px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+h1 {
+    font-size: 3.5rem; /* Larger for hero */
+    line-height: 1.2;
+}
+
+h2 {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 2rem;
+    position: relative; /* For pseudo-element underline */
+    padding-bottom: 0.5rem;
+}
+
+/* Underline effect for H2 */
+h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background-color: var(--primary-color); /* Default white, overridden below */
+}
+
+/* Specific H2 underline colors based on background */
+.bg-dark h2::after {
+    background-color: var(--primary-color); /* White on dark */
+}
+.bg-light h2::after {
+     background-color: var(--secondary-color); /* Black on light */
+}
+
+
+p {
+    margin-bottom: 1rem;
+}
+
+a {
+    text-decoration: none;
+    color: inherit; /* Inherit color by default */
+    transition: color var(--transition-speed);
+}
+
+ul {
+    list-style: none;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block; /* Remove bottom space */
+}
+
+/* Helper Classes */
+.bg-dark {
+    background-color: var(--background-dark);
+    color: var(--text-light);
+}
+
+.bg-light {
+    background-color: var(--background-light);
+    color: var(--text-dark);
+}
+
+.text-center {
+    text-align: center;
+}
+
+
+/* --- Header / Navigation --- */
+.main-header {
+    background-color: rgba(0, 0, 0, 0.9); /* Semi-transparent black */
+    color: var(--primary-color);
+    padding: 1rem 0;
+    position: fixed; /* Stick to top */
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000; /* Stay on top */
+    transition: background-color var(--transition-speed);
+}
+
+/* Style for scrolled header (optional JS needed)
+.main-header.scrolled {
+    background-color: var(--secondary-color);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+} */
+
+.main-header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo a {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.main-nav ul {
+    display: flex;
+}
+
+.main-nav ul li {
+    margin-left: 2rem;
+}
+
+.main-nav a {
+    color: var(--primary-color);
+    font-weight: 400;
+    transition: color var(--transition-speed);
+    position: relative; /* For underline effect */
+    padding-bottom: 5px;
+}
+
+.main-nav a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--primary-color);
+    transition: width var(--transition-speed);
+}
+
+.main-nav a:hover::after,
+.main-nav a.active::after { /* You might need JS to add 'active' class */
+     width: 100%;
+}
+
+.mobile-menu-toggle { /* Basic styling for the button */
+    display: none; /* Hidden on desktop */
+    background: none;
+    border: none;
+    color: var(--primary-color);
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+/* --- Hero Section --- */
+.hero {
+    /* background-color: var(--secondary-color); */ /* Alte Farbe auskommentiert oder entfernt */
+    color: var(--primary-color); /* Textfarbe bleibt weiß */
+    height: 100vh; /* Volle Viewport-Höhe */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding-top: 80px; /* Abstand für den fixierten Header */
+    position: relative;
+    overflow: hidden;
+
+    /* NEUE ODER GEÄNDERTE ZEILEN: */
+    background-image: url('../images/mein-hintergrundbild.jpg'); /* Pfad zu deinem Bild */
+    background-size: cover;        /* Bild füllt den Bereich */
+    background-position: center center; /* Bild zentrieren */
+    background-repeat: no-repeat;     /* Bild nicht wiederholen */
+
+     /* Optional: Dunkler Overlay für bessere Textlesbarkeit */
+     position: relative; /* Benötigt für das Overlay */
+}
+
+/* Optionales Overlay, um den Text lesbarer zu machen */
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Schwarz mit 50% Transparenz - Anpassen nach Bedarf */
+    z-index: 1; /* Liegt zwischen Hintergrundbild und Text */
+}
+
+/* Sicherstellen, dass der eigentliche Inhalt über dem Overlay liegt */
+.hero .container {
+    position: relative;
+    z-index: 2;
+}
+
+
+/* ... (Rest des CSS-Codes für .hero bleibt gleich oder folgt hier) ... */
+
+.hero h1 {
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+.hero p {
+    font-size: 1.3rem;
+    max-width: 600px;
+    margin-bottom: 2rem;
+    font-weight: 300;
+}
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    padding: 12px 30px;
+    border: 2px solid var(--primary-color);
+    border-radius: 5px; /* Slightly rounded corners */
+    font-weight: 600;
+    transition: all var(--transition-speed);
+    margin: 0.5rem;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+}
+
+.btn-primary:hover {
+    background-color: transparent;
+    color: var(--primary-color);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--primary-color);
+    border-color: var(--primary-color); /* White border on dark bg */
+}
+
+.btn-secondary:hover {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+}
+
+/* Adjust secondary button border color on light background */
+.bg-light .btn-secondary {
+     color: var(--secondary-color); /* Black text */
+     border-color: var(--secondary-color); /* Black border */
+}
+.bg-light .btn-secondary:hover {
+    background-color: var(--secondary-color); /* Black bg */
+    color: var(--primary-color); /* White text */
+}
+
+
+/* --- Content Sections --- */
+.content-section {
+    padding: 80px 0;
+}
+
+.content-section .container {
+     max-width: 900px; /* Slightly narrower for better readability */
+}
+
+.content-section p {
+    font-size: 1.1rem;
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+.section-image {
+    margin: 2rem auto;
+    border: 3px solid var(--accent-grey); /* Simple border */
+    max-width: 700px; /* Limit image size */
+}
+
+.placeholder { /* Style placeholders */
+    border: 2px dashed var(--accent-grey);
+    background-color: rgba(128, 128, 128, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 200px; /* Ensure placeholders have some height */
+    text-align: center;
+    padding: 20px;
+    color: var(--accent-grey);
+    position: relative; /* For the small text */
+}
+
+.placeholder small {
+    position: absolute;
+    bottom: 5px;
+    left: 5px;
+    font-size: 0.8rem;
+    background: rgba(0,0,0,0.5);
+    color: white;
+    padding: 2px 4px;
+    border-radius: 3px;
+}
+
+
+/* --- Technology Grid --- */
+.tech-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.tech-item {
+    text-align: center;
+    background-color: var(--background-light); /* Ensure it's light if section is light */
+    padding: 1.5rem;
+    border: 1px solid #ddd; /* Light border */
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.tech-item img {
+    margin-bottom: 1rem;
+    max-height: 150px; /* Limit icon/image size */
+    object-fit: cover; /* Adjust if needed */
+}
+.tech-item h3 {
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+     color: var(--secondary-color);
+}
+
+.tech-item p {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 0; /* Remove extra bottom margin */
+}
+
+
+/* --- Contact Form --- */
+.contact-form {
+    max-width: 600px;
+    margin: 2rem auto 1rem auto;
+    text-align: left;
+}
+
+.contact-form input,
+.contact-form textarea {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 1rem;
+    border: 1px solid var(--accent-grey);
+    background-color: #333; /* Darker input field on dark bg */
+    color: var(--text-light);
+    font-family: inherit;
+    border-radius: 3px;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+.contact-form button {
+    width: 100%;
+}
+.contact-form + p { /* Style the 'or contact directly' text */
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+.contact-form + p a {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+.contact-form + p a:hover {
+    text-decoration: underline;
+}
+
+/* --- Footer --- */
+.main-footer {
+    background-color: var(--secondary-color);
+    color: var(--text-light);
+    text-align: center;
+    padding: 2rem 0;
+    margin-top: 0; /* Remove potential top margin */
+    font-size: 0.9rem;
+}
+
+.main-footer p {
+    margin-bottom: 0.5rem;
+    color: #aaa; /* Lighter grey */
+}
+
+.main-footer .social-links a {
+     margin: 0 0.5rem;
+     color: #ccc;
+}
+.main-footer .social-links a:hover {
+    color: var(--primary-color);
+}
+
+
+/* --- Responsiveness --- */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2.5rem;
+    }
+    h2 {
+        font-size: 2rem;
+    }
+
+    .main-header .container {
+        flex-wrap: wrap; /* Allow wrapping for mobile */
+    }
+
+    .main-nav {
+        display: none; /* Hide nav by default on mobile */
+        width: 100%; /* Take full width when open */
+        background-color: rgba(0, 0, 0, 0.95);
+        position: absolute;
+        top: 100%; /* Position below header */
+        left: 0;
+        padding: 1rem 0; /* Add padding when open */
+    }
+    .main-nav.active { /* Class added by JS to show */
+        display: block;
+    }
+
+    .main-nav ul {
+        flex-direction: column; /* Stack links vertically */
+        align-items: center;
+    }
+
+    .main-nav ul li {
+        margin: 0.8rem 0; /* Add vertical margin */
+    }
+
+    .mobile-menu-toggle {
+        display: block; /* Show hamburger button */
+    }
+
+
+    .hero {
+        height: auto; /* Auto height on mobile */
+        min-height: 80vh;
+        padding: 120px 0 60px 0; /* More padding top/bottom */
+    }
+
+    .hero p {
+        font-size: 1.1rem;
+    }
+
+    .btn {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+
+    .tech-grid {
+        grid-template-columns: 1fr; /* Stack tech items */
+    }
+
+    .content-section {
+        padding: 60px 0;
+    }
+
+     html {
+         scroll-padding-top: 65px; /* Adjust for potentially smaller header */
+    }
+}
