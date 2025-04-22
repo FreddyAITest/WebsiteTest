@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Battleship Game</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .game-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .game-instructions {
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: left;
+        }
+        
+        .download-btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: #000;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+        
+        .download-btn:hover {
+            background-color: #333;
+        }
+        
+        .game-screenshot {
+            max-width: 100%;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        
+        code {
+            background-color: #eee;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">NOVA STELLARIS</a>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Battleship Game</h1>
+            <p>Play the classic naval combat game against the computer!</p>
+        </div>
+    </section>
+
+    <div class="game-container">
+        <h2>About the Game</h2>
+        <p>Battleship is a strategy type guessing game for two players. It is played on ruled grids on which each player's fleet of ships are marked. The locations of the fleets are concealed from the other player. Players alternate turns calling "shots" at the other player's ships, and the objective of the game is to destroy the opposing player's fleet.</p>
+        
+        <div class="game-instructions">
+            <h3>How to Play</h3>
+            <ol>
+                <li>Download the Python file using the button below</li>
+                <li>Run the game using Python: <code>python battleship.py</code></li>
+                <li>When the game starts, you'll be asked if you want to place your ships manually or randomly:
+                    <ul>
+                        <li>Choose 'm' for manual placement</li>
+                        <li>Choose 'r' for random placement</li>
+                    </ul>
+                </li>
+                <li>If you choose manual placement, for each ship:
+                    <ul>
+                        <li>Enter the starting position (e.g., A0, B3, etc.)</li>
+                        <li>Enter the orientation ('h' for horizontal, 'v' for vertical)</li>
+                    </ul>
+                </li>
+                <li>During gameplay:
+                    <ul>
+                        <li>Take turns with the computer attacking each other's boards</li>
+                        <li>Enter coordinates (e.g., A0, B3) to attack the computer's board</li>
+                        <li>The game will show hits (X) and misses (O)</li>
+                        <li>The first player to sink all of the opponent's ships wins</li>
+                    </ul>
+                </li>
+            </ol>
+            
+            <h3>Game Features</h3>
+            <ul>
+                <li>10x10 game board</li>
+                <li>5 ships of different sizes:
+                    <ul>
+                        <li>Carrier (5 spaces)</li>
+                        <li>Battleship (4 spaces)</li>
+                        <li>Cruiser (3 spaces)</li>
+                        <li>Submarine (3 spaces)</li>
+                        <li>Destroyer (2 spaces)</li>
+                    </ul>
+                </li>
+                <li>Smart computer AI that targets adjacent cells after a hit</li>
+                <li>Visual representation of the game boards</li>
+                <li>Ship placement validation to prevent overlapping or out-of-bounds ships</li>
+            </ul>
+            
+            <h3>Board Legend</h3>
+            <ul>
+                <li><code>~</code>: Water (empty space)</li>
+                <li><code>S</code>: Ship (only visible on your board)</li>
+                <li><code>X</code>: Hit</li>
+                <li><code>O</code>: Miss</li>
+            </ul>
+            
+            <h3>Requirements</h3>
+            <ul>
+                <li>Python 3.x</li>
+                <li>No external libraries required</li>
+            </ul>
+        </div>
+        
+        <a href="battleship.py" download class="download-btn">Download Battleship Game</a>
+    </div>
+
+    <footer class="main-footer">
+        <div class="container">
+            <p>© <span id="current-year"></span> Nova Stellaris. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
